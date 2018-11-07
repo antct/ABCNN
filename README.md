@@ -1,5 +1,5 @@
 # ABCNN
-Attention-Based Convolutional Neural Network.
+Attention-Based Convolutional Neural Network, modified from @[galsang/ABCNN](https://github.com/galsang/ABCNN).
 
 ## Environment
 
