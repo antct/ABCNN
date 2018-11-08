@@ -73,7 +73,7 @@ def export():
 			)
 			
 			legacy_init_op = tf.group(tf.tables_initializer(), name='legacy_init_op')
-            
+			
 			builder.add_meta_graph_and_variables(
 				sess, [tf.saved_model.tag_constants.SERVING],
 				signature_def_map = {tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY: classification_signature},
@@ -94,7 +94,7 @@ def predict():
 			logger.info("loading saved model: {}".format(ckpt_path))
 			saver = tf.train.Saver()
 			saver.restore(sess, ckpt_path)
-        
+		
 		logger.info('start predicting')
 		sess.run(model.iterator.initializer, feed_dict={model.src: data})
 

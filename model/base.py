@@ -34,7 +34,7 @@ class BaseModel(object):
 									data=self.data, 
 									vocab_table=self.vocab_table, 
 									batch_size=self.config.batch_size,
-                                    s0_max_len=self.config.s0_max_len, 
+									s0_max_len=self.config.s0_max_len, 
 									s1_max_len=self.config.s1_max_len
 								)
 
@@ -61,7 +61,7 @@ class BaseModel(object):
 					self.loss_1 = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels, logits=self.logits))
 					self.loss_2 = tf.losses.get_regularization_loss()
 					self.loss = self.loss_1 + self.loss_2
-                    
+					
 					self.optimizer = None
 					if self.config.optimizer == "rmsprop":
 						self.optimizer = tf.train.RMSPropOptimizer(self.config.lr)
@@ -71,7 +71,7 @@ class BaseModel(object):
 						self.optimizer = tf.train.MomentumOptimizer(self.config.lr, 0.9)
 					else:
 						raise ValueError("unsupported optimizer {}".format(self.config.optimizer))
-                    
+					
 					self.global_step = tf.Variable(0, trainable=False)
 					self.update = self.optimizer.minimize(self.loss, global_step=self.global_step)
 
@@ -84,7 +84,7 @@ class BaseModel(object):
 									s0_max_len=self.config.s0_max_len, 
 									s1_max_len=self.config.s1_max_len
 								)
-            
+			
 				s0_ids, s1_ids = self.iterator.get_next()
 
 				self.x1 = tf.nn.embedding_lookup(self.word_embedding, self.s0_ids)

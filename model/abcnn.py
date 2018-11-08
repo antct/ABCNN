@@ -102,7 +102,7 @@ class ABCNN(BCNN):
 				if self.config.model_type == 1 or self.config.model_type == 3:
 					a = self._attention_matrix(x1, x2)
 					f1 = self._attention_feature_map(x1, x2.get_shape().as_list()[1], a)
-					f2 = self._attention_feature_map(x2, x1.get_shape().as_list()[1], a)
+					f2 = self._attention_feature_map(x2, x1.get_shape().as_list()[1], tf.transpose(a))
 					x1 = tf.concat([x1, f1], axis=3) 
 					x2 = tf.concat([x2, f2], axis=3)
 					
