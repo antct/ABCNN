@@ -109,4 +109,3 @@ def get_inference_iterator(data, vocab_table, batch_size, s1_max_len=None, s2_ma
 
 
 
-
